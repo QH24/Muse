@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Múse Makeup</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4, #fbc2eb, #e6e9f0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .curves {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .curves svg {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.3);
+            stroke-width: 2;
+        }
+
+        .curves .curve1 {
+            top: 10%;
+            left: 10%;
+            transform: rotate(10deg);
+        }
+
+        .curves .curve2 {
+            bottom: 10%;
+            right: 10%;
+            transform: rotate(-10deg);
+        }
+
+        .curves .curve3 {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(20deg);
+        }
+
+        .container {
+            text-align: center;
+            color: #333;
+            z-index: 1;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 4em;
+            font-weight: 700;
+            font-family: 'Brush Script MT', cursive;
+            color: #ff66b2;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: fadeInUp 2s ease-in-out forwards;
+        }
+
+        .title {
+            font-size: 2em;
+            margin: 20px 0;
+            font-weight: 300;
+            color: #ff66b2;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 3s ease-in-out forwards 0.5s;
+        }
+
+        .description {
+            font-size: 1.2em;
+            margin: 0;
+            font-weight: 300;
+            color: #333;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 3s ease-in-out forwards 1s;
+        }
+
+        .countdown {
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #333;
+            font-weight: 300;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 3s ease-in-out forwards 1.5s;
+        }
+
+        .tester-button {
+            display: inline-block;
+            background-color: #ff66b2;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .tester-button:hover {
+            background-color: #ff4d8a;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 3em;
+            }
+
+            .title {
+                font-size: 1.5em;
+            }
+
+            .description {
+                font-size: 1em;
+            }
+
+            .countdown {
+                font-size: 1.2em;
+            }
+
+            .curves svg {
+                width: 80%;
+                max-width: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2.5em;
+            }
+
+            .title {
+                font-size: 1.2em;
+            }
+
+            .description {
+                font-size: 0.9em;
+            }
+
+            .countdown {
+                font-size: 1em;
+            }
+
+            .curves svg {
+                width: 70%;
+                max-width: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="curves">
+            <svg class="curve1" viewBox="0 0 100 100">
+                <path d="M0,50 C50,0 50,100 100,50" />
+            </svg>
+            <svg class="curve2" viewBox="0 0 100 100">
+                <path d="M0,50 C50,100 50,0 100,50" />
+            </svg>
+            <svg class="curve3" viewBox="0 0 100 100">
+                <path d="M50,0 C0,50 100,50 50,100" />
+            </svg>
+        </div>
+    </div>
+    <div class="container">
+        <div class="logo">Múse🦋</div>
+        <div class="title">Witness Beauty Meet Slay!🦋</div>
+        <div class="description">Múse is an American brand.</div>
+        <div class="countdown" id="countdown">Coming Soon...</div>
+        <a href="test.html" class="tester-button">TESTER CLICK HERE</a>
+    </div>
+
+    <script>
+        const now = new Date().getTime();
+        const launchDate = now + (6 * 24 * 60 * 60 * 1000);
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = 
+                `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = "We're Live!";
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>

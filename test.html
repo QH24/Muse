@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter PIN</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4, #fbc2eb, #e6e9f0);
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #ff66b2;
+        }
+
+        .pin-input {
+            font-size: 1.2em;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .submit-button {
+            background-color: #ff66b2;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: #ff4d8a;
+            transform: scale(1.05);
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Enter PIN to Access Home Page</div>
+        <input type="password" id="pinInput" class="pin-input" placeholder="Enter PIN" />
+        <button class="submit-button" onclick="validatePin()">Submit</button>
+        <div id="errorMessage" class="error-message"></div>
+    </div>
+
+    <script>
+        function validatePin() {
+            const correctPin = "789123";
+            const pinInput = document.getElementById("pinInput").value;
+            const errorMessage = document.getElementById("errorMessage");
+
+            if (pinInput === correctPin) {
+                window.location.href = "home.html";
+            } else {
+                errorMessage.textContent = "Incorrect PIN. Please try again.";
+            }
+        }
+    </script>
+</body>
+</html>
